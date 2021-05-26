@@ -1,0 +1,43 @@
+{{>partial_header}}
+package {{packageName}}
+
+import (
+	"net/http"
+	"errors"{{#imports}}
+	"{{import}}"{{/imports}}
+    "github/Media-Groove/openapi-go-echo/openapi"
+)
+
+// {{classname}}Service is a service that implements the logic for the {{classname}}Servicer
+// This service should implement the business logic for every endpoint for the {{classname}} API. 
+// Include any external packages or services that will be required by this service.
+type {{classname}}Service struct {
+}
+
+// New{{classname}}Service creates a default api service
+//noinspection GoUnusedExportedFunction
+func New{{classname}}Service() {{classname}}Servicer {
+	return &{{classname}}Service{}
+}{{#operations}}{{#operation}}
+
+// {{nickname}} - {{summary}}
+//noinspection GoUnusedParameter
+func (s *{{classname}}Service) {{nickname}}(ec *openapi.EchoContext{{#allParams}}{{^isAnyType}}, {{paramName}} {{^isArray}}{{^required}}*{{/required}}{{/isArray}}{{dataType}}{{/isAnyType}}{{/allParams}}) (int, interface{}) {
+	// TODO - update {{nickname}} with the required logic for this service method.
+	// Add {{classFilename}}_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+{{#responses}}
+{{#dataType}}
+	//TODO: Uncomment the next line to return response {{code}}, {{dataType}}{} or use other options such as http.Ok ...
+	//return {{code}}, {{dataType}}{}
+
+{{/dataType}}
+{{^dataType}}
+	//TODO: Uncomment the next line to return response {{code}}, {{dataType}}{}) or use other options such as http.Ok ...
+	//return {{code}}, nil
+
+{{/dataType}}
+{{/responses}}
+	return http.StatusNotImplemented, errors.New("{{nickname}} method not implemented")
+}{{/operation}}{{/operations}}
+

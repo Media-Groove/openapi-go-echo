@@ -1,0 +1,87 @@
+openapi: 3.0.0
+info:
+  title: api
+  version: '1.0'
+  contact:
+    name: MediGroove
+  description: サンプルAPI
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  '/test/{id}':
+    parameters:
+      - schema:
+          type: integer
+          format: int32
+        name: id
+        in: path
+        required: true
+    get:
+      summary: サンプルGET
+      tags:
+        - sample
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Data'
+        '404':
+          description: Not Found
+      operationId: get-test-id
+      description: サンプルGET
+    put:
+      summary: サンプルPUT
+      operationId: put-test-id
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Data'
+      description: サンプルPUT
+      tags:
+        - sample
+      security:
+        - BasicAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Data'
+    delete:
+      summary: サンプルDELETE
+      operationId: delete-test-id
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+      description: サンプルDELETE
+      security:
+        - BasicAuth: []
+      tags:
+        - sample
+tags:
+  - name: sample
+    description: サンプル
+components:
+  schemas:
+    Data:
+      title: Data
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        value:
+          type: string
+      required:
+        - id
+        - value
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic

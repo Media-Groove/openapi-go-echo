@@ -1,0 +1,30 @@
+version: '3.5'
+
+services:
+  # Go echo サーバ
+  go-echo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sample-go-echo
+    tty: true
+    volumes:
+      - ../src:/usr/src:delegated
+    ports:
+      - 1323:1323 # echoサーバの待受ポート
+    networks:
+      - atto-network
+  # swagger-ui
+  swagger-ui:
+    image: swaggerapi/swagger-ui:latest
+    container_name: sample-swagger-ui
+    volumes:
+      - ../_openapi/sample:/usr/share/nginx/html/sample
+    ports:
+      - 8080:8080
+    environment:
+      SWAGGER_JSON: /usr/share/nginx/html/sample/oepnapi.yaml
+
+networks:
+  sample-network:
+    name: sample-network
