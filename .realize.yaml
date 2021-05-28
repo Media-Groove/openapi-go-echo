@@ -1,0 +1,28 @@
+settings:
+  legacy:
+    force: false
+    interval: 0s
+server:
+  status: true
+  open: false
+  port: 5002
+  host: localhost
+schema:
+  - name: apiserver
+    path: .
+    commands:
+      install:
+        status: true
+        method: go build -o app .
+      run:
+        status: true
+        method: ./app
+    watcher:
+      extensions:
+        - go
+        - yaml
+      paths:
+        - /
+      ignored_paths:
+        - .git
+        - .realize
