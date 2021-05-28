@@ -1,0 +1,110 @@
+openapi: 3.0.0
+info:
+  contact:
+    name: MediGroove
+  description: サンプルAPI
+  title: api
+  version: "1.0"
+servers:
+- url: http://localhost:3000
+tags:
+- description: サンプル
+  name: sample
+paths:
+  /test/{id}:
+    delete:
+      description: サンプルDELETE
+      operationId: delete-test-id
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+      security:
+      - BasicAuth: []
+      summary: サンプルDELETE
+      tags:
+      - sample
+    get:
+      description: サンプルGET
+      operationId: get-test-id
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Data'
+          description: OK
+        "404":
+          description: Not Found
+      summary: サンプルGET
+      tags:
+      - sample
+    put:
+      description: サンプルPUT
+      operationId: put-test-id
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Data'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Data'
+          description: Created
+      security:
+      - BasicAuth: []
+      summary: サンプルPUT
+      tags:
+      - sample
+components:
+  schemas:
+    Data:
+      example:
+        id: 0
+        value: value
+      properties:
+        id:
+          format: int32
+          type: integer
+        value:
+          type: string
+      required:
+      - id
+      - value
+      title: Data
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
