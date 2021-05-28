@@ -2,7 +2,7 @@
 
 SET PKG_NAME=sampleapi
 SET SPEC_FILE=sample\api.v1.yaml
-SET DEST_DIR=..\src\sampleapi
+SET DEST_DIR=..\sampleapi
 
 pushd %~dp0
 SET GO_POST_PROCESS_FILE="goimports -w"

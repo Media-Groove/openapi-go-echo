@@ -2,7 +2,7 @@
 package {{packageName}}
 
 import (
-    "github/Media-Groove/openapi-go-echo/openapi"
+    "github.com/Media-Groove/openapi-go-echo/openapi"
 	"encoding/json"
 	"net/http"
 	"strings"
@@ -131,10 +131,6 @@ func (c *{{classname}}Controller) {{nickname}}(ec echo.Context) error {
         {{/isAnyType}}
 	{{/isBodyParam}}
 	{{/allParams}}
-statusCode, json := c.service.{{nickname}}(ec.(*openapi.EchoContext){{#allParams}}{{^isAnyType}}{{^isFile}}, {{#isBodyParam}}{{^isArray}}&{{/isArray}}{{/isBodyParam}}{{paramName}}{{/isFile}}{{/isAnyType}}{{/allParams}})
-    if json == nil {
-        return ec.String(statusCode, "")
-    } else {
-        return ec.JSON(statusCode, json)
-    }
+    statusCode, json := c.service.{{nickname}}(ec.(*openapi.EchoContext){{#allParams}}{{^isAnyType}}{{^isFile}}, {{#isBodyParam}}{{^isArray}}&{{/isArray}}{{/isBodyParam}}{{paramName}}{{/isFile}}{{/isAnyType}}{{/allParams}})
+    return openapi.Response(ec, statusCode, json)
 }{{/operation}}{{/operations}}

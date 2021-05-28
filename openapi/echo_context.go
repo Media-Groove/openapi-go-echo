@@ -25,3 +25,13 @@ func (ec *EchoContext) Ctx() context.Context {
 	}
 	return ec.ctx
 }
+
+// EchoContextMW EchoContextをセットするミドルウェアを返す関数
+// EchoContextをセットするミドルウェア
+func EchoContextMW(next echo.HandlerFunc) echo.HandlerFunc {
+	// ミドルウェアが実際に行う処理
+	return func(c echo.Context) error {
+		ec := NewEchoContext(c)
+		return next(ec)
+	}
+}
