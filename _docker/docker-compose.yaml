@@ -9,11 +9,11 @@ services:
     container_name: sample-go-echo
     tty: true
     volumes:
-      - ../src:/usr/src:delegated
+      - ..:/usr/src:delegated
     ports:
       - 1323:1323 # echoサーバの待受ポート
     networks:
-      - atto-network
+      - openapi-network
   # swagger-ui
   swagger-ui:
     image: swaggerapi/swagger-ui:latest
@@ -23,8 +23,10 @@ services:
     ports:
       - 8080:8080
     environment:
-      SWAGGER_JSON: /usr/share/nginx/html/sample/oepnapi.yaml
+      SWAGGER_JSON: /usr/share/nginx/html/sample/api.v1.yaml
+    networks:
+      - openapi-network
 
 networks:
-  sample-network:
-    name: sample-network
+  openapi-network:
+    name: openapi-network
