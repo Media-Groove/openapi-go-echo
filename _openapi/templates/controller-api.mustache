@@ -2,135 +2,135 @@
 package {{packageName}}
 
 import (
-    "github.com/Media-Groove/openapi-go-echo/openapi"
-	"encoding/json"
-	"net/http"
-	"strings"
-    "html"
-    "github.com/labstack/echo/v4"
+"github.com/Media-Groove/openapi-go-echo/openapi"
+"encoding/json"
+"net/http"
+"strings"
+"html"
+"github.com/labstack/echo/v4"
 )
 
 // A {{classname}}Controller binds http requests to an api service and writes the service results to the http response
 type {{classname}}Controller struct {
-	service {{classname}}Servicer
+service {{classname}}Servicer
 }
 
 // New{{classname}}Controller creates a default api controller
 //noinspection GoUnusedExportedFunction
 func New{{classname}}Controller(s {{classname}}Servicer) openapi.Router {
-	return &{{classname}}Controller{service: s}
+return &{{classname}}Controller{service: s}
 }
 
 // Routes returns all of the api route for the {{classname}}Controller
 func (c *{{classname}}Controller) Routes() openapi.Routes {
-	return openapi.Routes{ {{#operations}}{{#operation}}
-		{
-			"{{operationId}}",
-			strings.ToUpper("{{httpMethod}}"),
-			"{{{basePathWithoutHost}}}{{{path}}}",
-			c.{{operationId}},
-            []string{ {{#tags}}"{{name}}", {{/tags}} },
-            []string{ {{#authMethods}}"{{name}}"{{#hasMore}}, {{/hasMore}}{{/authMethods}} },
-		},{{/operation}}{{/operations}}
-	}
+return openapi.Routes{ {{#operations}}{{#operation}}
+    {
+    "{{operationId}}",
+    strings.ToUpper("{{httpMethod}}"),
+    "{{{basePathWithoutHost}}}{{{path}}}",
+    c.{{operationId}},
+    []string{ {{#tags}}"{{name}}", {{/tags}} },
+    []string{ {{#authMethods}}"{{name}}", {{/authMethods}} },
+    },{{/operation}}{{/operations}}
+}
 }{{#operations}}{{#operation}}
 
-// {{nickname}} - {{{summary}}}
-func (c *{{classname}}Controller) {{nickname}}(ec echo.Context) error {
-	{{#allParams}}
-	{{#isPathParam}}
-        {{^isAnyType}}
-            {{#isArray}}
-                {{paramName}}, err := openapi.PathParam_{{baseType}}Ary(ec, "{{baseName}}", {{required}}, html.UnescapeString("{{defaultValue}}"))
-            {{/isArray}}
-            {{^isArray}}
-                {{paramName}}, err := openapi.PathParam_{{dataType}}(ec, "{{baseName}}", "{{defaultValue}}")
-            {{/isArray}}
-        if err != nil {
-            return echo.NewHTTPError(http.StatusBadRequest, err)
-        }
-        {{/isAnyType}}
-	{{/isPathParam}}
-	{{#isQueryParam}}
-        {{^isAnyType}}
-            {{#isArray}}
-                {{paramName}}, err := openapi.QueryParam_{{baseType}}Ary(ec, "{{baseName}}", {{required}}, html.UnescapeString("{{defaultValue}}"))
-            {{/isArray}}
-            {{^isArray}}
-                {{#required}}
-                    {{paramName}}, err := openapi.QueryParam_{{dataType}}(ec, "{{baseName}}", "")
-                {{/required}}
-                {{^required}}
-                    {{#defaultValue}}
-                        {{paramName}}, err := openapi.QueryParam_{{dataType}}(ec, "{{baseName}}", "{{defaultValue}}")
-                    {{/defaultValue}}
-                    {{^defaultValue}}
-                        {{paramName}}, err := openapi.QueryParam_{{dataType}}Ptr(ec, "{{baseName}}")
-                    {{/defaultValue}}
-                {{/required}}
-            {{/isArray}}
-            if err != nil {
+    // {{nickname}} - {{{summary}}}
+    func (c *{{classname}}Controller) {{nickname}}(ec echo.Context) error {
+    {{#allParams}}
+        {{#isPathParam}}
+            {{^isAnyType}}
+                {{#isArray}}
+                    {{paramName}}, err := openapi.PathParam_{{baseType}}Ary(ec, "{{baseName}}", {{required}}, html.UnescapeString("{{defaultValue}}"))
+                {{/isArray}}
+                {{^isArray}}
+                    {{paramName}}, err := openapi.PathParam_{{dataType}}(ec, "{{baseName}}", "{{defaultValue}}")
+                {{/isArray}}
+                if err != nil {
                 return echo.NewHTTPError(http.StatusBadRequest, err)
-            }
-        {{/isAnyType}}
-	{{/isQueryParam}}
-	{{#isFormParam}}
-	{{^isFile}}
-        {{^isAnyType}}
-            {{#isArray}}
-                {{paramName}}, err := openapi.FormParam_{{baseType}}Ary(ec, "{{baseName}}", {{required}}, html.UnescapeString("{{defaultValue}}"))
-            {{/isArray}}
-            {{^isArray}}
-                {{#required}}
-                    {{paramName}}, err := openapi.FormParam_{{dataType}}(ec, "{{baseName}}", "")
-                {{/required}}
-                {{^required}}
-                    {{#defaultValue}}
-                        {{paramName}}, err := openapi.FormParam_{{dataType}}(ec, "{{baseName}}", "{{defaultValue}}")
-                    {{/defaultValue}}
-                    {{^defaultValue}}
-                        {{paramName}}, err := openapi.FormParam_{{dataType}}Ptr(ec, "{{baseName}}")
-                    {{/defaultValue}}
-                {{/required}}
-            {{/isArray}}
-            if err != nil {
+                }
+            {{/isAnyType}}
+        {{/isPathParam}}
+        {{#isQueryParam}}
+            {{^isAnyType}}
+                {{#isArray}}
+                    {{paramName}}, err := openapi.QueryParam_{{baseType}}Ary(ec, "{{baseName}}", {{required}}, html.UnescapeString("{{defaultValue}}"))
+                {{/isArray}}
+                {{^isArray}}
+                    {{#required}}
+                        {{paramName}}, err := openapi.QueryParam_{{dataType}}(ec, "{{baseName}}", "")
+                    {{/required}}
+                    {{^required}}
+                        {{#defaultValue}}
+                            {{paramName}}, err := openapi.QueryParam_{{dataType}}(ec, "{{baseName}}", "{{defaultValue}}")
+                        {{/defaultValue}}
+                        {{^defaultValue}}
+                            {{paramName}}, err := openapi.QueryParam_{{dataType}}Ptr(ec, "{{baseName}}")
+                        {{/defaultValue}}
+                    {{/required}}
+                {{/isArray}}
+                if err != nil {
                 return echo.NewHTTPError(http.StatusBadRequest, err)
-            }
-        {{/isAnyType}}
-	{{/isFile}}
-	{{/isFormParam}}
-	{{#isHeaderParam}}
-        {{^isAnyType}}
-            {{#isArray}}
-                {{paramName}}, err := openapi.HeaderParam_{{baseType}}Ary(ec, "{{baseName}}", {{required}}, html.UnescapeString("{{defaultValue}}"))
-            {{/isArray}}
-            {{^isArray}}
-                {{#required}}
-                    {{paramName}}, err := openapi.HeaderParam_{{dataType}}(ec, "{{baseName}}", "")
-                {{/required}}
-                {{^required}}
-                    {{#defaultValue}}
-                        {{paramName}}, err := openapi.HeaderParam_{{dataType}}(ec, "{{baseName}}", "{{defaultValue}}")
-                    {{/defaultValue}}
-                    {{^defaultValue}}
-                        {{paramName}}, err := openapi.HeaderParam_{{dataType}}Ptr(ec, "{{baseName}}")
-                    {{/defaultValue}}
-                {{/required}}
-            {{/isArray}}
-            if err != nil {
+                }
+            {{/isAnyType}}
+        {{/isQueryParam}}
+        {{#isFormParam}}
+            {{^isFile}}
+                {{^isAnyType}}
+                    {{#isArray}}
+                        {{paramName}}, err := openapi.FormParam_{{baseType}}Ary(ec, "{{baseName}}", {{required}}, html.UnescapeString("{{defaultValue}}"))
+                    {{/isArray}}
+                    {{^isArray}}
+                        {{#required}}
+                            {{paramName}}, err := openapi.FormParam_{{dataType}}(ec, "{{baseName}}", "")
+                        {{/required}}
+                        {{^required}}
+                            {{#defaultValue}}
+                                {{paramName}}, err := openapi.FormParam_{{dataType}}(ec, "{{baseName}}", "{{defaultValue}}")
+                            {{/defaultValue}}
+                            {{^defaultValue}}
+                                {{paramName}}, err := openapi.FormParam_{{dataType}}Ptr(ec, "{{baseName}}")
+                            {{/defaultValue}}
+                        {{/required}}
+                    {{/isArray}}
+                    if err != nil {
+                    return echo.NewHTTPError(http.StatusBadRequest, err)
+                    }
+                {{/isAnyType}}
+            {{/isFile}}
+        {{/isFormParam}}
+        {{#isHeaderParam}}
+            {{^isAnyType}}
+                {{#isArray}}
+                    {{paramName}}, err := openapi.HeaderParam_{{baseType}}Ary(ec, "{{baseName}}", {{required}}, html.UnescapeString("{{defaultValue}}"))
+                {{/isArray}}
+                {{^isArray}}
+                    {{#required}}
+                        {{paramName}}, err := openapi.HeaderParam_{{dataType}}(ec, "{{baseName}}", "")
+                    {{/required}}
+                    {{^required}}
+                        {{#defaultValue}}
+                            {{paramName}}, err := openapi.HeaderParam_{{dataType}}(ec, "{{baseName}}", "{{defaultValue}}")
+                        {{/defaultValue}}
+                        {{^defaultValue}}
+                            {{paramName}}, err := openapi.HeaderParam_{{dataType}}Ptr(ec, "{{baseName}}")
+                        {{/defaultValue}}
+                    {{/required}}
+                {{/isArray}}
+                if err != nil {
                 return echo.NewHTTPError(http.StatusBadRequest, err)
-            }
-        {{/isAnyType}}
-    {{/isHeaderParam}}
-	{{#isBodyParam}}
-        {{^isAnyType}}
-            var {{paramName}} {{dataType}}
-            if err := ec.Bind(&{{paramName}}); err != nil {
+                }
+            {{/isAnyType}}
+        {{/isHeaderParam}}
+        {{#isBodyParam}}
+            {{^isAnyType}}
+                var {{paramName}} {{dataType}}
+                if err := ec.Bind(&{{paramName}}); err != nil {
                 return echo.NewHTTPError(http.StatusBadRequest, err)
-            }
-        {{/isAnyType}}
-	{{/isBodyParam}}
-	{{/allParams}}
+                }
+            {{/isAnyType}}
+        {{/isBodyParam}}
+    {{/allParams}}
     statusCode, json := c.service.{{nickname}}(ec.(*openapi.EchoContext){{#allParams}}{{^isAnyType}}{{^isFile}}, {{#isBodyParam}}{{^isArray}}&{{/isArray}}{{/isBodyParam}}{{paramName}}{{/isFile}}{{/isAnyType}}{{/allParams}})
     return openapi.Response(ec, statusCode, json)
-}{{/operation}}{{/operations}}
+    }{{/operation}}{{/operations}}
