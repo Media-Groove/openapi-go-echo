@@ -2,8 +2,8 @@ cloud.google.com/go v0.26.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMT
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/DeNA/aelog v0.4.0 h1:N9li0d5FbyPbGaW5XTM69wwLUzwbL6ah5/El8tdZRMc=
 github.com/DeNA/aelog v0.4.0/go.mod h1:xudkgF5D02XWPGeYQfU8+AIt53ctORBZGNpO6zvcuWE=
-github.com/Media-Groove/go-utils v0.0.0-20210526095335-d32b06ab59f9 h1:FGNK8pAsbMj++91Wwa7RYg5IclSgfnPR9a1x/D2Vk/k=
-github.com/Media-Groove/go-utils v0.0.0-20210526095335-d32b06ab59f9/go.mod h1:JVT9VRpqj8ctj3doRnlQCh/6pgdyLLHor6UmJ/DQI8A=
+github.com/Media-Groove/go-utils v0.1.0 h1:34myip8WOlwcmFmdqDgb3//Q9hI8wtK0OX6hiLi45Io=
+github.com/Media-Groove/go-utils v0.1.0/go.mod h1:JVT9VRpqj8ctj3doRnlQCh/6pgdyLLHor6UmJ/DQI8A=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
