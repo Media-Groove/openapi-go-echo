@@ -6,7 +6,7 @@ info:
     name: MediGroove
   description: サンプルAPI
 servers:
-  - url: 'http://localhost:3000'
+  - url: 'http://0.0.0.0:1323'
 paths:
   '/test/{id}':
     parameters:
@@ -81,6 +81,10 @@ components:
       required:
         - id
         - value
+      x-examples:
+        example-1:
+          id: -2147483648
+          value: string
   securitySchemes:
     BasicAuth:
       type: http

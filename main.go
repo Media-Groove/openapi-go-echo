@@ -19,5 +19,5 @@ func (i Initializer) Initialize(_ context.Context) {
 }
 
 func (i Initializer) EchoSetup(e *echo.Echo) {
-	openapi.SetRoutes(e, &openapi.NoMiddlewares{}, sampleapi.NewSampleApiController(sampleapi.NewSampleApiService()))
+	openapi.SetRoutes(e, &openapi.NoMiddlewares{}, sampleapi.NewSampleApiController(NewSampleApiService()))
 }

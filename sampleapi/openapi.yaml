@@ -6,7 +6,7 @@ info:
   title: api
   version: "1.0"
 servers:
-- url: http://localhost:3000
+- url: http://localhost:1323
 tags:
 - description: サンプル
   name: sample
@@ -104,6 +104,10 @@ components:
       - value
       title: Data
       type: object
+      x-examples:
+        example-1:
+          id: -2147483648
+          value: string
   securitySchemes:
     BasicAuth:
       scheme: basic
