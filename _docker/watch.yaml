@@ -1,0 +1,5 @@
+delay: 100
+watch:
+  - directory: ..\
+    container: /sample-go-echo
+    command: [supervisorctl, restart, go_run]

@@ -1,4 +1,3 @@
-# realize起動
+# supervisor起動
 cd /usr/src || exit
-chmod -R 777 .
-realize start --server
+supervisord -n -c /etc/supervisor/supervisord.conf
