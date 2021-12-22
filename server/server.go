@@ -11,6 +11,9 @@ import (
 	"time"
 )
 
+// Start Echo HTTP サーバ起動関数
+// 指定された initializer で初期化を行う。
+// cancelWaitingTime はサーバ終了時のシャット断処理待ち時間。
 func Start(initializer Initializer, cancelWaitingTime time.Duration) {
 	ctx := context.Background()
 
@@ -20,7 +23,7 @@ func Start(initializer Initializer, cancelWaitingTime time.Duration) {
 	// バナー非表示
 	e.HideBanner = true
 	// 共通ミドルウェア
-	e.Use(openapi.EchoContextMW, echo.WrapMiddleware(middleware.AELogger("Atto")))
+	e.Use(openapi.EchoContextMW, echo.WrapMiddleware(middleware.AELogger("ServeHTTP")))
 	// /_ah/* ハンドラ
 	SetAhHandlers(e)
 	// Echoサーバのセットアップ

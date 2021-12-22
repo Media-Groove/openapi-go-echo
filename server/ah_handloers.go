@@ -5,6 +5,7 @@ import (
 	"net/http"
 )
 
+// SetAhHandlers GAE の /_ah/* へのアクセスをエラーにしないためのハンドラ設定
 func SetAhHandlers(e *echo.Echo) {
 	// warmup
 	e.GET("/_ah/warmup", handlerNoContentOK)
