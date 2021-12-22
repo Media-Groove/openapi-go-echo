@@ -1,3 +1,6 @@
+/**
+サンプルアプリケーション
+*/
 package main
 
 import (
@@ -6,6 +9,7 @@ import (
 	"github.com/Media-Groove/openapi-go-echo/sampleapi"
 	"github.com/Media-Groove/openapi-go-echo/server"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 	"time"
 )
 
@@ -19,5 +23,6 @@ func (i Initializer) Initialize(_ context.Context) {
 }
 
 func (i Initializer) EchoSetup(e *echo.Echo) {
+	e.Use(middleware.CORS()) // swaggerからのアクセスを許可
 	openapi.SetRoutes(e, &openapi.NoMiddlewares{}, sampleapi.NewSampleApiController(NewSampleApiService()))
 }
