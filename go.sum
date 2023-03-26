@@ -6,6 +6,8 @@ github.com/Media-Groove/go-utils v0.1.0 h1:34myip8WOlwcmFmdqDgb3//Q9hI8wtK0OX6hi
 github.com/Media-Groove/go-utils v0.1.0/go.mod h1:JVT9VRpqj8ctj3doRnlQCh/6pgdyLLHor6UmJ/DQI8A=
 github.com/Media-Groove/go-utils v0.2.0 h1:nuLG68pMx9g1/y9m16uXYaupgrnfVSgXPBXro0y0FNw=
 github.com/Media-Groove/go-utils v0.2.0/go.mod h1:JVT9VRpqj8ctj3doRnlQCh/6pgdyLLHor6UmJ/DQI8A=
+github.com/Media-Groove/go-utils v1.0.0 h1:Kq7Lb8dob4AKNMotwg6EMIJjDp9DYTEmhaOqbGjNaAg=
+github.com/Media-Groove/go-utils v1.0.0/go.mod h1:4t09CbD7B/3p8EDc2+avAoQx2CaTJXD7fTo3EK/DjYo=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
@@ -35,6 +37,7 @@ github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+
 github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81PSLYec5m4=
 github.com/stretchr/testify v1.7.0 h1:nwc3DEeHmmLAfoZucVR881uASk0Mfjw8xYJ99tb5CcY=
 github.com/stretchr/testify v1.7.0/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
+github.com/stretchr/testify v1.8.2/go.mod h1:w2LPCIKwWwSfY2zedu0+kehJoqGctiVI29o6fzry7u4=
 github.com/valyala/bytebufferpool v1.0.0 h1:GqA5TC/0021Y/b9FG4Oi9Mr3q7XYx6KllzawFIhcdPw=
 github.com/valyala/bytebufferpool v1.0.0/go.mod h1:6bBcMArwyJ5K/AmCkWv1jt77kVWyCJ6HpOuEn7z0Csc=
 github.com/valyala/fasttemplate v1.0.1/go.mod h1:UQGH1tvbgY+Nz5t2n7tXsz52dQxojPUpymEIMZ47gx8=
