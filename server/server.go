@@ -11,6 +11,8 @@ import (
 	"time"
 )
 
+var e *echo.Echo
+
 // Start Echo HTTP サーバ起動関数
 // 指定された initializer で初期化を行う。
 // cancelWaitingTime はサーバ終了時のシャット断処理待ち時間。
@@ -19,7 +21,7 @@ func Start(initializer Initializer, cancelWaitingTime time.Duration) {
 
 	initializer.Initialize(ctx)
 
-	e := echo.New()
+	e = echo.New()
 	// バナー非表示
 	e.HideBanner = true
 	// 共通ミドルウェア
@@ -55,4 +57,8 @@ func GetPort() string {
 		port = "1323"
 	}
 	return port
+}
+
+func Shutdown(ctx context.Context) error {
+	return e.Shutdown(ctx)
 }
