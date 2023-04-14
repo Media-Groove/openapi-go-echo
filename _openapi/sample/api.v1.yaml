@@ -72,19 +72,35 @@ components:
     Data:
       title: Data
       type: object
+      x-examples:
+        example-1:
+          id: -2147483648
+          value: string
       properties:
         id:
           type: integer
           format: int32
         value:
           type: string
+        data2:
+          $ref: '#/components/schemas/SubData'
+        data3:
+          $ref: '#/components/schemas/SubData'
       required:
         - id
-        - value
-      x-examples:
-        example-1:
-          id: -2147483648
-          value: string
+        - data2
+    SubData:
+      title: SubData
+      x-stoplight:
+        id: 01c0b14e3ff8d
+      type: object
+      properties:
+        id:
+          type: string
+        number:
+          type: integer
+      required:
+        - id
   securitySchemes:
     BasicAuth:
       type: http

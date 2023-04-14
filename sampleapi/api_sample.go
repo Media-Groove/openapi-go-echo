@@ -20,7 +20,7 @@ type SampleApiController struct {
 }
 
 // NewSampleApiController creates a default api controller
-//noinspection GoUnusedExportedFunction
+// noinspection GoUnusedExportedFunction
 func NewSampleApiController(s SampleApiServicer) openapi.Router {
 	return &SampleApiController{service: s}
 }

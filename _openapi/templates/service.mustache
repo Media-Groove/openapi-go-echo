@@ -15,13 +15,13 @@ type {{classname}}Service struct {
 }
 
 // New{{classname}}Service creates a default api service
-//noinspection GoUnusedExportedFunction
+// noinspection GoUnusedExportedFunction
 func New{{classname}}Service() {{classname}}Servicer {
 	return &{{classname}}Service{}
 }{{#operations}}{{#operation}}
 
 // {{nickname}} - {{summary}}
-//noinspection GoUnusedParameter
+// noinspection GoUnusedParameter
 func (s *{{classname}}Service) {{nickname}}(ec *openapi.EchoContext{{#allParams}}{{^isAnyType}}, {{paramName}} {{^isArray}}{{^required}}*{{/required}}{{/isArray}}{{dataType}}{{/isAnyType}}{{/allParams}}) (int, interface{}) {
 	// TODO - update {{nickname}} with the required logic for this service method.
 	// Add {{classFilename}}_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.

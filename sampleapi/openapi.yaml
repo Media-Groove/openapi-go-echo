@@ -91,6 +91,12 @@ components:
   schemas:
     Data:
       example:
+        data3:
+          number: 6
+          id: id
+        data2:
+          number: 6
+          id: id
         id: 0
         value: value
       properties:
@@ -99,15 +105,34 @@ components:
           type: integer
         value:
           type: string
+        data2:
+          $ref: '#/components/schemas/SubData'
+        data3:
+          $ref: '#/components/schemas/SubData'
       required:
+      - data2
       - id
-      - value
       title: Data
       type: object
       x-examples:
         example-1:
           id: -2147483648
           value: string
+    SubData:
+      example:
+        number: 6
+        id: id
+      properties:
+        id:
+          type: string
+        number:
+          type: integer
+      required:
+      - id
+      title: SubData
+      type: object
+      x-stoplight:
+        id: 01c0b14e3ff8d
   securitySchemes:
     BasicAuth:
       scheme: basic

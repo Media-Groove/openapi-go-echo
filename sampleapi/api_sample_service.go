@@ -20,13 +20,13 @@ type SampleApiService struct {
 }
 
 // NewSampleApiService creates a default api service
-//noinspection GoUnusedExportedFunction
+// noinspection GoUnusedExportedFunction
 func NewSampleApiService() SampleApiServicer {
 	return &SampleApiService{}
 }
 
 // DeleteTestId - サンプルDELETE
-//noinspection GoUnusedParameter
+// noinspection GoUnusedParameter
 func (s *SampleApiService) DeleteTestId(ec *openapi.EchoContext, id int32) (int, interface{}) {
 	// TODO - update DeleteTestId with the required logic for this service method.
 	// Add api_sample_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
@@ -41,7 +41,7 @@ func (s *SampleApiService) DeleteTestId(ec *openapi.EchoContext, id int32) (int,
 }
 
 // GetTestId - サンプルGET
-//noinspection GoUnusedParameter
+// noinspection GoUnusedParameter
 func (s *SampleApiService) GetTestId(ec *openapi.EchoContext, id int32) (int, interface{}) {
 	// TODO - update GetTestId with the required logic for this service method.
 	// Add api_sample_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
@@ -56,7 +56,7 @@ func (s *SampleApiService) GetTestId(ec *openapi.EchoContext, id int32) (int, in
 }
 
 // PutTestId - サンプルPUT
-//noinspection GoUnusedParameter
+// noinspection GoUnusedParameter
 func (s *SampleApiService) PutTestId(ec *openapi.EchoContext, id int32, data *Data) (int, interface{}) {
 	// TODO - update PutTestId with the required logic for this service method.
 	// Add api_sample_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.

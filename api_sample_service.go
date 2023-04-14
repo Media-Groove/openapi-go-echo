@@ -20,7 +20,7 @@ type SampleApiService struct {
 }
 
 // NewSampleApiService creates a default api service
-//noinspection GoUnusedExportedFunction
+// noinspection GoUnusedExportedFunction
 func NewSampleApiService() sampleapi.SampleApiServicer {
 	return &SampleApiService{
 		data: map[int32]sampleapi.Data{},
@@ -28,7 +28,7 @@ func NewSampleApiService() sampleapi.SampleApiServicer {
 }
 
 // DeleteTestId - サンプルDELETE
-//noinspection GoUnusedParameter
+// noinspection GoUnusedParameter
 func (s *SampleApiService) DeleteTestId(ec *openapi.EchoContext, id int32) (int, interface{}) {
 	if _, ok := s.data[id]; ok {
 		delete(s.data, id)
@@ -38,7 +38,7 @@ func (s *SampleApiService) DeleteTestId(ec *openapi.EchoContext, id int32) (int,
 }
 
 // GetTestId - サンプルGET
-//noinspection GoUnusedParameter
+// noinspection GoUnusedParameter
 func (s *SampleApiService) GetTestId(ec *openapi.EchoContext, id int32) (int, interface{}) {
 	if data, ok := s.data[id]; ok {
 		return http.StatusOK, data
@@ -47,8 +47,8 @@ func (s *SampleApiService) GetTestId(ec *openapi.EchoContext, id int32) (int, in
 }
 
 // PutTestId - サンプルPUT
-//noinspection GoUnusedParameter
+// noinspection GoUnusedParameter
 func (s *SampleApiService) PutTestId(ec *openapi.EchoContext, id int32, data *sampleapi.Data) (int, interface{}) {
 	s.data[id] = *data
-	return http.StatusCreated, nil
+	return http.StatusCreated, data
 }
