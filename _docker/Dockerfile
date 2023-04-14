@@ -1,4 +1,4 @@
-FROM golang:1.15-stretch
+FROM golang:1.20.2-bullseye
 
 # realize - 自動ビルド用のディレクトリ監視ツールインストール
 WORKDIR /root
