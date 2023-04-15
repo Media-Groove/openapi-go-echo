@@ -9,9 +9,9 @@ package sampleapi
 type Data struct {
 	Id int32 `json:"id"`
 
-	Value *string `json:"value,omitempty"`
+	Value *string `json:"value"`
 
 	Data2 SubData `json:"data2"`
 
-	Data3 *SubData `json:"data3,omitempty"`
+	Data3 *SubData `json:"data3"`
 }
