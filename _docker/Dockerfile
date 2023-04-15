@@ -10,7 +10,4 @@ RUN git config --global url."https://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:x-
 # supervisor
 RUN apt-get update -y && apt-get install supervisor -y
 COPY ./supervisor/* /etc/supervisor/conf.d/
-# 起動スクリプト実行
-COPY ./startup.sh /startup.sh
-RUN chmod 744 /startup.sh
-CMD /startup.sh
+CMD ["supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
