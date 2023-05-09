@@ -9,5 +9,5 @@ package sampleapi
 type SubData struct {
 	Id string `json:"id"`
 
-	Number *int32 `json:"number"`
+	Number *int32 `json:"number,omitempty"`
 }
