@@ -2,13 +2,13 @@ package server
 
 import (
 	"context"
-	"github.com/DeNA/aelog/middleware"
-	"github.com/Media-Groove/openapi-go-echo/openapi"
-	"github.com/labstack/echo/v4"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
+
+	"github.com/Media-Groove/openapi-go-echo/openapi"
+	"github.com/labstack/echo/v4"
 )
 
 var e *echo.Echo
@@ -25,7 +25,7 @@ func Start(initializer Initializer, cancelWaitingTime time.Duration) {
 	// バナー非表示
 	e.HideBanner = true
 	// 共通ミドルウェア
-	e.Use(openapi.EchoContextMW, echo.WrapMiddleware(middleware.AELogger("ServeHTTP")))
+	e.Use(openapi.EchoContextMW)
 	// /_ah/* ハンドラ
 	SetAhHandlers(e)
 	// Echoサーバのセットアップ
