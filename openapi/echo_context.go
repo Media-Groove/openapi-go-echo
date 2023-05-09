@@ -12,7 +12,7 @@ type EchoContext struct {
 	ctx context.Context
 }
 
-//noinspection GoUnusedExportedFunction
+// noinspection GoUnusedExportedFunction
 func NewEchoContext(ec echo.Context) *EchoContext {
 	c := EchoContext{Context: ec}
 	c.ctx = ec.Request().Context()
@@ -24,6 +24,10 @@ func (ec *EchoContext) Ctx() context.Context {
 		ec.ctx = ec.Request().Context()
 	}
 	return ec.ctx
+}
+
+func (ec *EchoContext) SetCtx(ctx context.Context) {
+	ec.ctx = ctx
 }
 
 // EchoContextMW EchoContextをセットするミドルウェアを返す関数
