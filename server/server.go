@@ -29,7 +29,7 @@ func Start(initializer Initializer, cancelWaitingTime time.Duration) {
 	// /_ah/* ハンドラ
 	SetAhHandlers(e)
 	// Echoサーバのセットアップ
-	initializer.EchoSetup(e)
+	initializer.EchoSetup(ctx, e)
 
 	// サーバ起動
 	go func() {
@@ -45,7 +45,7 @@ func Start(initializer Initializer, cancelWaitingTime time.Duration) {
 	// サーバ終了
 	c, cancel := context.WithTimeout(ctx, cancelWaitingTime)
 	defer cancel()
-	if err := e.Shutdown(c); err != nil {
+	if err := Shutdown(c); err != nil {
 		e.Logger.Fatal(err)
 	}
 }

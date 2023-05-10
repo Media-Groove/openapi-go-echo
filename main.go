@@ -1,4 +1,5 @@
-/**
+/*
+*
 サンプルアプリケーション
 */
 package main
@@ -22,7 +23,7 @@ type Initializer struct{}
 func (i Initializer) Initialize(_ context.Context) {
 }
 
-func (i Initializer) EchoSetup(e *echo.Echo) {
+func (i Initializer) EchoSetup(_ context.Context, e *echo.Echo) {
 	e.Use(middleware.CORS()) // swaggerからのアクセスを許可
 	openapi.SetRoutes(e, &openapi.NoMiddlewares{}, sampleapi.NewSampleApiController(NewSampleApiService()))
 }

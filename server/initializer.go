@@ -14,5 +14,5 @@ type Initializer interface {
 
 	// EchoSetup echo.Echo インスタンスに対するセットアップ処理を記述する
 	// 主にルートやミドルウェアの設定を行う。
-	EchoSetup(e *echo.Echo)
+	EchoSetup(ctx context.Context, e *echo.Echo)
 }
