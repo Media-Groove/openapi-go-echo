@@ -27,3 +27,6 @@ func (i Initializer) EchoSetup(_ context.Context, e *echo.Echo) {
 	e.Use(middleware.CORS()) // swaggerからのアクセスを許可
 	openapi.SetRoutes(e, &openapi.NoMiddlewares{}, sampleapi.NewSampleApiController(NewSampleApiService()))
 }
+
+func (i Initializer) Shutdown(_ context.Context) {
+}

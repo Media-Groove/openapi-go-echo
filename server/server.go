@@ -48,6 +48,7 @@ func Start(initializer Initializer, cancelWaitingTime time.Duration) {
 	if err := Shutdown(c); err != nil {
 		e.Logger.Fatal(err)
 	}
+	initializer.Shutdown(ctx)
 }
 
 // GetPort 待ち受けポート取得
