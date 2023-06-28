@@ -31,6 +31,8 @@ func SetRoutes(e *echo.Echo, middlewares Middlewares, routers ...Router) {
 		for _, route := range api.Routes() {
 			pattern := strings.ReplaceAll(strings.ReplaceAll(route.Pattern, "{", ":"), "}", "")
 			switch route.Method {
+			case http.MethodHead:
+				e.HEAD(pattern, route.HandlerFunc, middlewares.Get(route)...)
 			case http.MethodGet:
 				e.GET(pattern, route.HandlerFunc, middlewares.Get(route)...)
 			case http.MethodPost:
