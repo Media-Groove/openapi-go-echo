@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+	"time"
 
 	"github.com/labstack/echo/v4"
 	"github.com/stretchr/testify/assert"
@@ -480,5 +481,26 @@ func TestQueryParam_float64Ptr(t *testing.T) {
 	})
 
 	req := httptest.NewRequest(http.MethodGet, "/?a=12.3&c=ERROR", nil)
+	e.ServeHTTP(nil, req)
+}
+
+func TestQueryParam_time_TimePtr(t *testing.T) {
+	e := echo.New()
+	e.GET("/", func(ec echo.Context) error {
+		d, err := QueryParam_time.TimePtr(ec, "a")
+		require.Nil(t, err)
+		assert.Equal(t, "2023-08-02T05:42:05.188Z", d.Format(time.RFC3339Nano))
+
+		d, err = QueryParam_time.TimePtr(ec, "b")
+		require.Nil(t, err)
+		assert.Nil(t, d)
+
+		d, err = QueryParam_time.TimePtr(ec, "c")
+		require.NotNil(t, err)
+
+		return nil
+	})
+
+	req := httptest.NewRequest(http.MethodGet, "/?a=2023-08-02T05%3A42%3A05.188Z&c=ERROR", nil)
 	e.ServeHTTP(nil, req)
 }

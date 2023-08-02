@@ -2,6 +2,7 @@ package openapi
 
 import (
 	"github.com/labstack/echo/v4"
+	"time"
 )
 
 func QueryParam_string(ec echo.Context, name, defVal string) (string, error) {
@@ -119,6 +120,26 @@ func QueryParam_float64Ptr(ec echo.Context, name string) (*float64, error) {
 		return nil, nil
 	case nil:
 		return &n, nil
+	default:
+		return nil, err
+	}
+}
+
+type QueryParam_timeStruct struct{}
+
+var QueryParam_time = QueryParam_timeStruct{}
+
+func (QueryParam_timeStruct) TimePtr(ec echo.Context, name string) (*time.Time, error) {
+	s, err := QueryParam_string(ec, name, "")
+	switch err {
+	case ErrMsgRequiredMissing:
+		return nil, nil
+	case nil:
+		d, err := time.Parse(time.RFC3339Nano, s)
+		if err != nil {
+			return nil, err
+		}
+		return &d, nil
 	default:
 		return nil, err
 	}
