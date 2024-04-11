@@ -11,13 +11,14 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+var ctx context.Context
 var e *echo.Echo
 
 // Start Echo HTTP サーバ起動関数
 // 指定された initializer で初期化を行う。
 // cancelWaitingTime はサーバ終了時のシャット断処理待ち時間。
 func Start(initializer Initializer, cancelWaitingTime time.Duration) {
-	ctx := context.Background()
+	ctx = context.Background()
 
 	initializer.Initialize(ctx)
 
